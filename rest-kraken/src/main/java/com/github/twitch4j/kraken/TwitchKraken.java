@@ -119,4 +119,13 @@ public interface TwitchKraken {
     	@Param("logins") List<String> logins
     );
 
+    @RequestLine(value = "GET /users/{user}/emotes")
+    @Headers({
+        "Authorization: OAuth {token}",
+        "Accept: application/vnd.twitchtv.v5+json"
+    })
+    HystrixCommand<KrakenEmotesList> getUserEmotes(
+        @Param("token") String authToken,
+        @Param("user") String userId
+    );
 }
